@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  api:
+    container_name: test-deploy
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: development
+      args:
+        - PORT=${PORT}
+    env_file: .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/usr/src/app
